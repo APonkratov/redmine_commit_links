@@ -28,15 +28,15 @@ This plugin requires an additional view hook which can be added by
 applying a patch to your Redmine instance. From your Redmine path run:
 
 ```bash
-$ git apply plugins/redmine_merge_request_links/patches/view_hook_issues_show_after_details_redmine_3.4.patch
+$ git apply plugins/redmine_commit_links/patches/view_hook_issues_show_after_details_redmine_3.4.patch
 ```
 
 or if you use EasyRedmine
 ```bash
-$ git apply plugins/redmine_merge_request_links/patches/view_hook_issues_show_after_details_easyredmine.patch
+$ git apply plugins/redmine_commit_links/patches/view_hook_issues_show_after_details_easyredmine.patch
 ```
 
-Finally, restart your webserver.
+Finally, restart your redmine.
 
 
 ## Configuration
