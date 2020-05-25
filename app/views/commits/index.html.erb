@@ -1,0 +1,31 @@
+<% if @commits.blank? %>
+  <p>Commits not found</p>
+<% else %>
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Display id</th>
+      <th>Provider</th>
+      <th>Repo name</th>
+      <th>Branch</th>
+      <th>Title</th>
+      <th>Author name</th>
+      <th>Issues</th>
+    </tr>
+    </thead>
+
+    <% @commits.each do |commit| %>
+      <tr>
+        <td><%= commit.id %></td>
+        <td><%= commit.display_id %></td>
+        <td><%= commit.provider %></td>
+        <td><%= commit.repo_name %></td>
+        <td><%= commit.branch %></td>
+        <td><%= link_to(commit.title, commit.url) %></td>
+        <td><%= commit.author_name %></td>
+        <td><%= commit.issues %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

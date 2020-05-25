@@ -1,0 +1,5 @@
+en:
+  project_module_commit_links: Merge request links
+  permission_view_associated_commits: View associated merge requests
+  mrl_label_associated_commits: Associated Merge Requests
+  mrl_label_by: by
