@@ -1,10 +1,8 @@
-# Redmine Merge Request Links
+# Redmine Commit Links
 
-[![Build Status](https://travis-ci.org/tf/redmine_merge_request_links.svg?branch=master)](https://travis-ci.org/tf/redmine_merge_request_links)
+Display links to associated commits on Redmine's issue page.
 
-Display links to associated merge requests and pull requests on Redmine's issue page.
-
-Intercepts webhooks and parses merge request descriptions for mentioned issue ids.
+Intercepts webhooks and parses commit descriptions for mentioned issue ids.
 
 The following platforms are supported:
 
@@ -15,7 +13,7 @@ The following platforms are supported:
 
 ## Requirements
 
-* Redmine 3 (tested with 3.4.6)
+* Redmine 3 (tested with 3.4.3)
 
 ## Installation
 
@@ -38,28 +36,12 @@ or if you use EasyRedmine
 $ git apply plugins/redmine_merge_request_links/patches/view_hook_issues_show_after_details_easyredmine.patch
 ```
 
-One of the following environment variables need to be set:
-
-* `REDMINE_MERGE_REQUEST_LINKS_GITLAB_WEBHOOK_TOKEN`
-* `REDMINE_MERGE_REQUEST_LINKS_GITHUB_WEBHOOK_TOKEN`
-
-If you use systemd set appropriate environment variable:
-
-`https://serverfault.com/a/413408`
-
-They must contain secrets which have to be configured in GitLab/GitHub to
-authenticate webhooks.
-
-Export the environment variable(s) in your bash or webserver config.
-Examples with Phusion Passenger webserver can be found here:
-https://www.phusionpassenger.com/library/indepth/environment_variables.html
-
 Finally, restart your webserver.
 
 
 ## Configuration
 
-Create a webhook in GitLab or GitHub as described here:
+Create a webhook in GitLab, GitHub or Gitea as described here:
 
 ### GitLab
 
@@ -67,12 +49,9 @@ Create a webhook in GitLab or GitHub as described here:
   or the system hook page (Admin area > System Hooks).
 
 * Enter the URL of your Redmine instance
-  `http://redmine.example.com/merge_requests/event`
+  `http://redmine.example.com/commits/event`
 
-* Enter the secret token you defined in environment variable
-  `REDMINE_MERGE_REQUEST_LINKS_GITLAB_WEBHOOK_TOKEN`
-
-* Check the "Merge request events" trigger.
+* Check the "Push" trigger.
 
 * Click "Add webhook".
 
@@ -81,16 +60,13 @@ Create a webhook in GitLab or GitHub as described here:
 * Go to the webhook page of a project or organization.
 
 * Enter the URL of your Redmine instance
-  `https://redmine.example.com/merge_requests/event`.
+  `https://redmine.example.com/commits/event`.
 
 * Select `application/json` as content type.
 
-* Enter the secret token you defined in environment variable
-  `REDMINE_MERGE_REQUEST_LINKS_GITHUB_WEBHOOK_TOKEN`.
-
 * Choose "Let me select individual events".
 
-* Check the "Pull requests" event.
+* Check the "Push" event.
 
 * Click "Add webhook".
 
@@ -99,65 +75,31 @@ Create a webhook in GitLab or GitHub as described here:
 * Go to the webhook page of a project or organization.
 
 * Enter the URL of your Redmine instance
-  `https://redmine.example.com/merge_requests/event`.
+  `https://redmine.example.com/commits/event`.
 
 * Select `application/json` as content type.
 
-* Enter the secret token you defined in environment variable
-  `REDMINE_MERGE_REQUEST_LINKS_GITEA_WEBHOOK_TOKEN`.
-
 * Choose "Custom events...".
 
-* Check the "Pull requests" event.
+* Check the "Push" event.
 
 * Click "Add webhook".
 
 ### Redmine
 
-To display associated merge requests on issue pages:
+To display associated commits on issue pages:
 
-* Add the "View associated merge requests" permission to one or more
+* Add the "View associated commits" permission to one or more
   roles.
 
-* Enable the "Merge request links" project module.
+* Enable the "Commit links" project module.
 
 
 ## Usage
 
-Create a merge request and reference a Redmine issue either in the
-form `#123` or `REDMINE-123`. See a link to the merge request appear
+Create a commit and reference a Redmine issue either in the
+form `#123` or `REDMINE-123`. See a link to the commit appear
 on the issue's Redmine page.
-
-
-## Known Issues
-
-* GitLab only passes the author id as part of the merge request
-  webhook not a display name. It does include the username of the user
-  whose action triggered the webhook, though. To prevent having to
-  fetch the author name in a separate REST API call, this username is
-  used as author name since the user triggering a merge request's
-  first webhook is usually the author. For merge request that were
-  created before the plugin was installed, this causes the first user
-  to edit the merge request to be recorded as the author.
-
-
-## Development
-
-After checking out the repository, run
-
-```
-$ bin/build
-```
-
-to build the Docker container used to run the test suite.
-
-Then run
-
-```
-$ bin/test
-```
-
-to run the test suite inside a Docker container.
 
 ## License
 
