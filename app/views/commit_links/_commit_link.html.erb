@@ -1,14 +1,14 @@
 <%= content_tag(:div, id: "commit-#{commit.id}", class: "commit commit-#{commit.provider}") do %>
   <%= content_tag(:span,
-                  commit.repo_name,
+                  link_to(commit.repo_name, commit.repo_url),
                   class: "commit-branch") %>
   <%= content_tag(:span,
                   commit.branch,
                   class: "commit-branch") %>
   <%= content_tag(:span,
-                  commit.display_id,
+                  link_to(commit.display_id, commit.url),
                   class: 'commit-id') %>
-  <%= link_to(commit.title, commit.url) %>
+  <%= commit.title %>
   <span class="commit-by-line">
     <%= l(:mrl_label_by) %>
     <%= content_tag(:span,
