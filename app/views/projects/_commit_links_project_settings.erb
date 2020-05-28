@@ -4,8 +4,8 @@
 
 <%=
   form_for @project,
-           :url => {:action => 'commit_links_settings', :id => @project},
-           :html => {:id => 'commit-links-settings-form', :method => :post} do |f|
+           :url => {:action => 'commit_links_project_settings', :id => @project},
+           :html => {:id => 'commit-links-project-settings-form', :method => :post} do |f|
 %>
 
   <fieldset class="box">
@@ -22,7 +22,7 @@
     <div class="box tabular settings">
       <p>
         <%= content_tag :label, l('redmine_commit_links.settings.repo_base_url') %>
-        <%= text_field_tag 'settings[commit_links][repo_base_url]', 1, settings[:repo_base_url] %>
+        <%= text_field_tag 'settings[repo_base_url]', settings[:repo_base_url] %>
       </p>
     </div>
 

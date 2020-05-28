@@ -8,6 +8,7 @@
       <th>Display id</th>
       <th>Provider</th>
       <th>Repo name</th>
+      <th>Repo full-name</th>
       <th>Branch</th>
       <th>Title</th>
       <th>Author name</th>
@@ -21,6 +22,7 @@
         <td><%= commit.display_id %></td>
         <td><%= commit.provider %></td>
         <td><%= commit.repo_name %></td>
+        <td><%= commit.repo_full_name %></td>
         <td><%= commit.branch %></td>
         <td><%= link_to(commit.title, commit.url) %></td>
         <td><%= commit.author_name %></td>

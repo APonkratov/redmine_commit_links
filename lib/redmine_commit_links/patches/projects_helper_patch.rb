@@ -19,9 +19,9 @@ module RedmineCommitLinks
           return tabs unless User.current.allowed_to?(:edit_project, @project)
 
           tabs << {
-              :name => 'commit_links_settings',
-              :action => :ete_manage_project_settings,
-              :partial => 'projects/commit_links_settings',
+              :name => 'commit_links_project_settings',
+              :action => :commit_links_manage_project_settings,
+              :partial => 'projects/commit_links_project_settings',
               :label => 'redmine_commit_links.settings.label_redmine_commit_links'
           }
 

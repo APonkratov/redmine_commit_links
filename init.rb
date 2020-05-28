@@ -1,5 +1,7 @@
 require 'redmine'
 require 'redmine_commit_links'
+require 'redmine_commit_links/patches/project_controller_patch'
+require 'redmine_commit_links/patches/project_helper_patch'
 
 Redmine::Plugin.register :redmine_commit_links do
   name 'Redmine Commit Links'
@@ -17,12 +19,12 @@ Redmine::Plugin.register :redmine_commit_links do
 end
 
 Rails.configuration.to_prepare do
-  [
-      [ProjectsController, RedmineCommitLinks::Patches::ProjectsControllerPatch],
-      [ProjectsHelper, RedmineCommitLinks::Patches::ProjectsHelperPatch]
-  ].each do |classname, modulename|
-    unless classname.included_modules.include?(modulename)
-      classname.send(:include, modulename)
-    end
+  require_dependency 'projects_helper'
+  require_dependency 'projects_controller'
+  unless ProjectsHelper.included_modules.include?(RedmineCommitLinks::Patches::ProjectsHelperPatch)
+    ProjectsHelper.send(:include, RedmineCommitLinks::Patches::ProjectsHelperPatch)
+  end
+  unless ProjectsController.included_modules.include?(RedmineCommitLinks::Patches::ProjectsControllerPatch)
+    ProjectsController.send(:include, RedmineCommitLinks::Patches::ProjectsControllerPatch)
   end
 end
