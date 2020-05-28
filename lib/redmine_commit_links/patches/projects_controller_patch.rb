@@ -9,7 +9,7 @@ module RedmineCommitLinks
 
       module InstanceMethods
 
-        def commit_links_project_settings
+        def commit_links_settings
           @settings = params[:settings][:commit_links]
 
           RedmineCommitLinks.default_settings.each do |k, v|
@@ -25,7 +25,7 @@ module RedmineCommitLinks
             flash[:error] = l('redmine_commit_links.settings.error_update_not_successful')
           end
 
-          redirect_to settings_project_path(@project, :tab => 'commit_links_project_settings')
+          redirect_to settings_project_path(@project, :tab => 'commit_links_settings')
         end
 
       end

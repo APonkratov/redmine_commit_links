@@ -1,4 +1,4 @@
-class CommitLinksSetting < ActiveRecord::Base
+class CommitLinksSettings < ActiveRecord::Base
 
   attr_accessible :project_id, :repo_base_url
 

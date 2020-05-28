@@ -1,7 +1,7 @@
 require 'redmine'
 require 'redmine_commit_links'
-require 'redmine_commit_links/patches/project_controller_patch'
-require 'redmine_commit_links/patches/project_helper_patch'
+require 'redmine_commit_links/patches/projects_controller_patch'
+require 'redmine_commit_links/patches/projects_helper_patch'
 
 Redmine::Plugin.register :redmine_commit_links do
   name 'Redmine Commit Links'
