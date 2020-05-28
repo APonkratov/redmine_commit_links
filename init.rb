@@ -14,7 +14,7 @@ Redmine::Plugin.register :redmine_commit_links do
   requires_redmine version_or_higher: '3.4'
 
   project_module :commit_links do
-    permission :view_associated_commits, {}
+    permission :view_associated_commits, {:projects => [:commit_links_settings]}, :require => :member
   end
 end
 

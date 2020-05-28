@@ -36,6 +36,11 @@ or if you use EasyRedmine
 $ git apply plugins/redmine_commit_links/patches/view_hook_issues_show_after_details_easyredmine.patch
 ```
 
+if you have some error applying patch, add flags to your command
+```bash
+$git apply --ignore-space-change --ignore-whitespace <path to patch>
+```
+
 Finally, restart your redmine.
 
 

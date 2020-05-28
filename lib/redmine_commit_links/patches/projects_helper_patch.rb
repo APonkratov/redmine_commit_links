@@ -13,8 +13,8 @@ module RedmineCommitLinks
 
       module InstanceMethods
 
-        def project_settings_tabs
-          tabs = project_settings_tabs_without_commit_links_settings
+        def project_settings_tabs_with_redmine_commit_links
+          tabs = project_settings_tabs_without_redmine_commit_links
 
           return tabs unless @project.module_enabled?('commit_links')
           return tabs unless User.current.allowed_to?(:edit_project, @project)

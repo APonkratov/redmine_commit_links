@@ -1,3 +1,11 @@
+<%
+  settings = CommitLinksSettings.settings_for_project(@project)
+  commit_url = commit.url
+  unless settings.nil? || commit.repo_full_name.nil?
+    commit_url = File.join(settings[:repo_base_url], commit.repo_full_name, 'commit', commit.display_id)
+  end
+%>
+
 <%= content_tag(:div, id: "commit-#{commit.id}", class: "commit commit-#{commit.provider}") do %>
   <%= content_tag(:span,
                   link_to(commit.repo_name, commit.repo_url),
@@ -6,7 +14,7 @@
                   commit.branch,
                   class: "commit-branch") %>
   <%= content_tag(:span,
-                  link_to(commit.display_id, commit.url),
+                  link_to(commit.display_id, commit_url),
                   class: 'commit-id') %>
   <%= commit.title %>
   <span class="commit-by-line">
