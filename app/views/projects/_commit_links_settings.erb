@@ -1,0 +1,34 @@
+<%
+  settings = CommitLinksSettings.settings_for_project(@project)
+%>
+
+<%=
+  form_for @project,
+           :url => {:action => 'commit_links_settings', :id => @project},
+           :html => {:id => 'commit-links-settings-form', :method => :post} do |f|
+%>
+
+  <fieldset class="box">
+    <legend>
+      <b>
+        <%= l('settings.header') %>
+      </b>
+    </legend>
+
+    <p>
+      <%= h l('settings.info') %>
+    </p>
+
+    <div class="box tabular settings">
+      <p>
+        <%= content_tag :label, l('settings.repo_base_url') %>
+        <%= text_field_tag 'settings[repo_base_url]', settings[:repo_base_url] %>
+      </p>
+    </div>
+
+    <p>
+      <%= submit_tag l(:button_save) %>
+    </p>
+
+  </fieldset>
+<% end %>

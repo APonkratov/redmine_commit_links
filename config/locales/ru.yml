@@ -3,3 +3,9 @@ ru:
   permission_view_associated_commits: Просмотр связанных коммитов
   mrl_label_associated_commits: Связанные коммиты
   mrl_label_by: by
+  settings:
+    info: Укажите URL git сервера для корректного формирования ссылок на коммиты
+    header: Настройки связанных коммитов
+    error_update_not_successful: Не удалось сохранить настройки
+    label_redmine_commit_links: Связанные коммиты
+    repo_base_url: URL git сервера

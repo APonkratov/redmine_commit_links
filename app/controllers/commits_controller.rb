@@ -15,6 +15,7 @@ class CommitsController < ApplicationController
     if params[:commits].present?
       branch = params[:ref].split("/").last
       repo_name = params[:repository][:name]
+      repo_full_name = params[:repository][:full_name]
       repo_url = params[:repository][:html_url]
 
       params[:commits].each do |last_commit|
@@ -23,6 +24,7 @@ class CommitsController < ApplicationController
         commit_info[:title] = last_commit[:message]
         commit_info[:url] = last_commit[:url]
         commit_info[:repo_name] = repo_name
+        commit_info[:repo_full_name] = repo_full_name
         commit_info[:repo_url] = repo_url
         commit_info[:branch] = branch
         commit_info[:display_id] = last_commit[:id]
