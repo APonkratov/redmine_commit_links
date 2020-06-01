@@ -10,7 +10,11 @@ class CommitsController < ApplicationController
   def event
     event_handler = find_event_handler
     return head :bad_request unless event_handler
-    # return head :forbidden unless event_handler.verify(request)
+    if event_handler.provider == 'gitea'
+      return head :forbidden unless event_handler.verify(params[:secret])
+    else
+      return head :forbidden unless event_handler.verify(request)
+    end
 
     if params[:commits].present?
       branch = params[:ref].split("/").last
@@ -20,7 +24,7 @@ class CommitsController < ApplicationController
 
       params[:commits].each do |last_commit|
         commit_info = {}
-        commit_info[:provider] = 'gitea'
+        commit_info[:provider] = event_handler.provider
         commit_info[:title] = last_commit[:message]
         commit_info[:url] = last_commit[:url]
         commit_info[:repo_name] = repo_name
@@ -34,13 +38,6 @@ class CommitsController < ApplicationController
             Commit.find_or_initialize_by(url: commit_info[:url])
         commit.update!(commit_info)
       end
-
-      # commit_list = event_handler.parse_params(params)
-      # commit_list.each do |attributes|
-      # commit =
-      #     Commit.find_or_initialize_by(url: attributes[:url])
-      # commit.update!(attributes)
-
       head :ok
     end
   end

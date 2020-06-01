@@ -22,6 +22,10 @@ module RedmineCommitLinks
                                    request.headers['X-Hub-Signature'])
       end
 
+      def provider
+        'github'
+      end
+
       def parse_params(params)
         if params[:commits].present?
           commits_list = []
@@ -29,7 +33,7 @@ module RedmineCommitLinks
           repo_name = params[:repository][:name]
           params[:commits].each do |last_commit|
             commit_info = {}
-            commit_info[:provider] = 'gitea'
+            commit_info[:provider] = 'github'
             commit_info[:title] = last_commit[:message]
             commit_info[:branch] = branch
             commit_info[:id] = last_commit[:id]

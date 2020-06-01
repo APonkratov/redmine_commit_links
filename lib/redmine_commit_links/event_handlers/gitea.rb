@@ -9,16 +9,12 @@ module RedmineCommitLinks
         request.headers['X-Gitea-Event'] == 'push'
       end
 
-      def verify(request)
-        request.body.rewind
-        payload = request.body.read
+      def verify(secret)
+        @token == secret
+      end
 
-        signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'),
-                                            @token,
-                                            payload)
-
-        Rack::Utils.secure_compare(signature,
-                                   request.headers['X-Gitea-Signature'])
+      def provider
+        'gitea'
       end
 
       def parse_params(params)
