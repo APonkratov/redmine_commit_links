@@ -11,7 +11,7 @@ class CommitsController < ApplicationController
     event_handler = find_event_handler
     return head :bad_request unless event_handler
     if event_handler.provider == 'gitea'
-      return head :forbidden unless event_handler.verify(params[secret])
+      return head :forbidden unless event_handler.verify(params[:secret])
     else
       return head :forbidden unless event_handler.verify(request)
     end
