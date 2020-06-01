@@ -15,6 +15,10 @@ module RedmineCommitLinks
         request.headers['X-Gitlab-Token'] == @token
       end
 
+      def provider
+        'gitlab'
+      end
+
       def parse_params(params)
         if params[:commits].present?
           commits_list = []
@@ -22,7 +26,7 @@ module RedmineCommitLinks
           repo_name = params[:repository][:name]
           params[:commits].each do |last_commit|
             commit_info = {}
-            commit_info[:provider] = 'gitea'
+            commit_info[:provider] = 'gitlab'
             commit_info[:title] = last_commit[:message]
             commit_info[:branch] = branch
             commit_info[:id] = last_commit[:id]

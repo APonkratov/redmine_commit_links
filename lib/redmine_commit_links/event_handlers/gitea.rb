@@ -21,6 +21,10 @@ module RedmineCommitLinks
                                    request.headers['X-Gitea-Signature'])
       end
 
+      def provider
+        'gitea'
+      end
+
       def parse_params(params)
         if params[:commits].present?
           commits_list = []
