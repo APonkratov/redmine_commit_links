@@ -46,6 +46,8 @@ div#issue-commits {
 .commit-id {
   display: block;
   color: #444;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .commit a {
