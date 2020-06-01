@@ -41,6 +41,9 @@ if you have some error applying patch, add flags to your command
 $git apply --ignore-space-change --ignore-whitespace <path to patch>
 ```
 
+Set environment variable named `REDMINE_COMMIT_LINKS_TOKEN` containing some string.
+This token will use to auth in webhook handler.
+
 Finally, restart your redmine.
 
 
@@ -58,6 +61,8 @@ Create a webhook in GitLab, GitHub or Gitea as described here:
 
 * Check the "Push" trigger.
 
+* Enter secret token
+
 * Click "Add webhook".
 
 ### GitHub
@@ -73,6 +78,8 @@ Create a webhook in GitLab, GitHub or Gitea as described here:
 
 * Check the "Push" event.
 
+* Enter secret token
+
 * Click "Add webhook".
 
 ### Gitea
@@ -87,6 +94,8 @@ Create a webhook in GitLab, GitHub or Gitea as described here:
 * Choose "Custom events...".
 
 * Check the "Push" event.
+
+* Enter secret token
 
 * Click "Add webhook".
 
