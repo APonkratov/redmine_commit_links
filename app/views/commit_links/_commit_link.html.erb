@@ -8,7 +8,7 @@
 
 <%= content_tag(:div, id: "commit-#{commit.id}", class: "commit commit-#{commit.provider}") do %>
   <%= content_tag(:span,
-                  link_to(commit.repo_name, commit.repo_url),
+                  commit.repo_name,
                   class: "commit-branch") %>
   <%= content_tag(:span,
                   commit.branch,
