@@ -6,7 +6,7 @@
   end
 %>
 
-<%= content_tag(:div, id: "commit-#{commit.id}", class: "commit commit-#{commit.provider}") do %>
+<%= content_tag(:div, id: "commit-#{commit.id}", class: "commit #{cycle('odd', 'even')} commit-#{commit.provider}") do %>
   <%= content_tag(:span,
                   commit.repo_name,
                   class: "commit-branch") %>

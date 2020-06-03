@@ -50,6 +50,11 @@ div#issue-commits {
   overflow: hidden;
 }
 
+.commit-id a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .commit a {
   display: block;
   font-weight: bold;
@@ -63,7 +68,6 @@ div#issue-commits {
   font-weight: bold;
   padding: 2px 5px;
   border-radius: 2px;
-  float: right;
 }
 
 .commit-by-line {
