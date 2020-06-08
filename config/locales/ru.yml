@@ -4,6 +4,8 @@ ru:
   mrl_label_associated_commits: Связанные коммиты
   mrl_label_by: by
   settings:
+    global:
+      token: Токен авторизации для получения коммитов
     info: Укажите URL git сервера для корректного формирования ссылок на коммиты
     header: Настройки связанных коммитов
     error_update_not_successful: Не удалось сохранить настройки

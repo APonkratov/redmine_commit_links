@@ -2,7 +2,11 @@ require 'redmine_commit_links/hooks'
 
 module RedmineCommitLinks
 
-  server_token = ENV['REDMINE_COMMIT_LINKS_TOKEN']
+  server_token = ""
+  # server_token = Setting["plugin_redmine_commit_links"]["token"]
+  server_token = Setting.plugin_redmine_commit_links["token"]
+  # server_token = '#{Setting.plugin_redmine_commit_links["token"]}'
+  Rails.logger.info "Token " + server_token
 
   mattr_accessor :event_handlers
   self.event_handlers = [
@@ -16,5 +20,4 @@ module RedmineCommitLinks
         :repo_base_url => ""
     }
   end
-
 end
