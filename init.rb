@@ -16,6 +16,10 @@ Redmine::Plugin.register :redmine_commit_links do
   project_module :commit_links do
     permission :view_associated_commits, {:projects => [:commit_links_settings]}, :require => :member
   end
+
+  settings default: {
+      commit_links_api_key: ''
+  }, partial: 'settings/settings'
 end
 
 Rails.configuration.to_prepare do

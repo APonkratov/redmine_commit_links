@@ -4,6 +4,8 @@ ru:
   mrl_label_associated_commits: Связанные коммиты
   mrl_label_by: by
   mrl_label_at: at
+  commit_links: Ссылки на коммиты
+  commit_links_api_key: API ключ
   settings:
     info: Укажите URL git сервера для корректного формирования ссылок на коммиты
     header: Настройки связанных коммитов

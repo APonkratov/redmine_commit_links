@@ -4,3 +4,5 @@ en:
   mrl_label_associated_commits: Associated Merge Requests
   mrl_label_by: by
   mrl_label_at: at
+  commit_links: Commit links
+  commit_links_api_key: API key
