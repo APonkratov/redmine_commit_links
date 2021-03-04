@@ -1,7 +1,5 @@
 class CommitLinksSettings < ActiveRecord::Base
 
-  attr_accessible :project_id, :repo_base_url
-
   scope :for_project, -> (project) {
     proj_id = project.is_a?(Class) ? project.id : project
     where(:project_id => proj_id)

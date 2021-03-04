@@ -3,6 +3,7 @@ ru:
   permission_view_associated_commits: Просмотр связанных коммитов
   mrl_label_associated_commits: Связанные коммиты
   mrl_label_by: by
+  mrl_label_at: at
   settings:
     info: Укажите URL git сервера для корректного формирования ссылок на коммиты
     header: Настройки связанных коммитов

@@ -6,7 +6,7 @@ module RedmineCommitLinks
       end
 
       def matches?(request)
-        request.headers['X-Gitlab-Event'] == 'push' ||
+        request.headers['X-Gitlab-Event'] == 'Push Hook' ||
           (request.headers['X-Gitlab-Event'] == 'System Hook' &&
            request.request_parameters['event_type'] == 'push')
       end

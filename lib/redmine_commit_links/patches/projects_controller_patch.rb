@@ -18,7 +18,7 @@ module RedmineCommitLinks
           end
 
           project_setting = CommitLinksSettings.for_project(@project).first_or_initialize
-          project_setting.assign_attributes(@settings)
+          project_setting.repo_base_url = @settings[:repo_base_url]
 
           if project_setting.save!
             flash[:notice] = l(:notice_successful_update)

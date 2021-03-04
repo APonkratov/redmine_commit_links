@@ -14,13 +14,17 @@
                   commit.branch,
                   class: "commit-branch") %>
   <%= content_tag(:span,
-                  link_to(commit.display_id, commit_url),
+                  link_to(commit.display_id, commit_url, target: :_blank),
                   class: 'commit-id') %>
   <%= commit.title %>
   <span class="commit-by-line">
     <%= l(:mrl_label_by) %>
     <%= content_tag(:span,
                     commit.author_name,
+                    class: 'commit-author') %>
+    <%= l(:mrl_label_at) %>
+    <%= content_tag(:span,
+                    commit.commit_date.localtime,
                     class: 'commit-author') %>
   </span>
 <% end %>

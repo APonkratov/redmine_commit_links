@@ -33,6 +33,7 @@ class CommitsController < ApplicationController
         commit_info[:branch] = branch
         commit_info[:display_id] = last_commit[:id]
         commit_info[:author_name] = last_commit[:author][:name]
+        commit_info[:commit_date] = DateTime.strptime(last_commit[:timestamp])
 
         commit =
             Commit.find_or_initialize_by(url: commit_info[:url])

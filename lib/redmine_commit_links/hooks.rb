@@ -5,7 +5,7 @@ module RedmineCommitLinks
                           plugin: 'redmine_commit_links')
     end
 
-    render_on(:view_issues_show_after_details,
+    render_on(:view_issues_sidebar_queries_bottom,
               partial: 'commit_links/box')
   end
 end
