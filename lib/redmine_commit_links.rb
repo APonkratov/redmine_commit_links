@@ -1,4 +1,5 @@
-require 'redmine_commit_links/hooks'
+
+require_relative 'redmine_commit_links/hooks'
 
 module RedmineCommitLinks
 
