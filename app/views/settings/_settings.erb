@@ -1,0 +1,7 @@
+<p>
+  <label><%= l(:commit_links_api_key) %></label>
+  <%= text_field_tag 'settings[commit_links_api_key]',
+                     @settings[:commit_links_api_key],
+                     :size => 100,
+                     :required => false %>
+</p>

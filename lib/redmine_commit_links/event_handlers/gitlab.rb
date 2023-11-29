@@ -1,18 +1,16 @@
 module RedmineCommitLinks
   module EventHandlers
     class Gitlab
-      def initialize(token:)
-        @token = token
-      end
+      include GitBase
 
       def matches?(request)
-        request.headers['X-Gitlab-Event'] == 'push' ||
+        request.headers['X-Gitlab-Event'] == 'Push Hook' ||
           (request.headers['X-Gitlab-Event'] == 'System Hook' &&
-           request.request_parameters['event_type'] == 'push')
+           request.request_parameters['event_name'] == 'push')
       end
 
       def verify(request)
-        request.headers['X-Gitlab-Token'] == @token
+        request.headers['X-Gitlab-Token'] == get_api_key
       end
 
       def provider

@@ -1,7 +1,8 @@
 require 'redmine'
-require 'redmine_commit_links'
-require 'redmine_commit_links/patches/projects_controller_patch'
-require 'redmine_commit_links/patches/projects_helper_patch'
+
+require_relative 'lib/redmine_commit_links'
+require_relative 'lib/redmine_commit_links/patches/projects_controller_patch'
+require_relative 'lib/redmine_commit_links/patches/projects_helper_patch'
 
 Redmine::Plugin.register :redmine_commit_links do
   name 'Redmine Commit Links'
@@ -16,6 +17,10 @@ Redmine::Plugin.register :redmine_commit_links do
   project_module :commit_links do
     permission :view_associated_commits, {:projects => [:commit_links_settings]}, :require => :member
   end
+
+  settings default: {
+      commit_links_api_key: ''
+  }, partial: 'settings/settings'
 end
 
 Rails.configuration.to_prepare do

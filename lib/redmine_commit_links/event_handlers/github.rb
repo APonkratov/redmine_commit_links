@@ -1,9 +1,7 @@
 module RedmineCommitLinks
   module EventHandlers
     class Github
-      def initialize(token:)
-        @token = token
-      end
+      include GitBase
 
       def matches?(request)
         request.headers['X-GitHub-Event'] == 'push'
@@ -15,7 +13,7 @@ module RedmineCommitLinks
 
         signature =
           'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'),
-                                            @token,
+                                            get_api_key,
                                             payload)
 
         Rack::Utils.secure_compare(signature,

@@ -1,16 +1,14 @@
 module RedmineCommitLinks
   module EventHandlers
     class Gitea
-      def initialize(token:)
-        @token = token
-      end
+      include GitBase
 
       def matches?(request)
         request.headers['X-Gitea-Event'] == 'push'
       end
 
       def verify(secret)
-        @token == secret
+        get_api_key == secret
       end
 
       def provider

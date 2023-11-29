@@ -3,10 +3,15 @@ div#issue-changesets {
 }
 
 div#issue-commits {
-  float: right;
-  width: 45%;
-  margin: 1em 0 2em 1em;
-  padding-left: 1em;
+  display: none;
+}
+
+h3#issue-commits-header{
+  cursor: pointer;
+}
+
+.issue-commits-count{
+  color: #169;
 }
 
 @media screen and (max-width: 899px) {

@@ -1,12 +1,37 @@
-<% if User.current.allowed_to?(:view_associated_commits, @project) %>
+<% if @issue and User.current.allowed_to?(:view_associated_commits, @project) %>
   <% commits = Commit.find_all_by_issue(@issue) %>
 
   <% if commits.present? %>
-    <div id="issue-commits">
-      <h3><%= l(:mrl_label_associated_commits) %></h3>
-      <%= render(partial: 'commit_links/commit_link',
-                 collection: Commit.find_all_by_issue(@issue),
+      <h3 id="issue-commits-header"><%= l(:mrl_label_associated_commits) %> <span class="issue-commits-count">(<%=  commits.count %>)</span></h3>
+      <div id="issue-commits">
+          <%= render(partial: 'commit_links/commit_link',
+                 collection: commits,
                  as: :commit) %>
-    </div>
+      </div>
+  <% end %>
+<% end %>
+
+<% content_for(:header_tags) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+        $("#issue-commits").dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            title: "<%= l(:mrl_label_associated_commits) %>",
+            width: 800,
+        });
+
+        $("#issue-commits-header").click(function(e){
+            $("#issue-commits").dialog("open");
+            e.stopPropagation();
+        });
+
+        $(document).click(function(){
+            let dialog = $("#issue-commits");
+            if (dialog.dialog("isOpen")){
+                  dialog.dialog("close");
+            }
+        });
+    });
   <% end %>
 <% end %>

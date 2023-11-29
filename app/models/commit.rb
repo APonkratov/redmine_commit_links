@@ -13,7 +13,7 @@ class Commit < ActiveRecord::Base
   after_save :scan_description_for_issue_ids
 
   def self.find_all_by_issue(issue)
-    includes(:issues).where(issues: { id: issue.id })
+    includes(:issues).where(issues: { id: issue.id }).order(:commit_date)
   end
 
   private
